@@ -205,7 +205,23 @@ class WP_Bouncer {
 				$session_ids = array($session_ids);
 
 			//how many logins are allowed
-			$num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 1);
+		//	$num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 1);
+			
+			// permite dois logins para usuários nível 2
+       global $wpdb;
+
+        $user = $wpdb->get_row(
+           $wpdb->prepare(
+                "SELECT * FROM wpxk_pmpro_memberships_users WHERE user_id = %s LIMIT 1",
+                $current_user->ID
+            )
+        );
+
+       if ($user->membership_id == 1) {   
+        $num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 1);
+       } else {
+        $num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 2);
+       }			
 			
 			//0 means do nothing
 			if(empty($num_allowed))

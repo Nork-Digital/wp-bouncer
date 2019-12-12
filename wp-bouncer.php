@@ -217,10 +217,14 @@ class WP_Bouncer {
             )
         );
 
-       if ($user->membership_id == 1) {   
+      if ($user->membership_id == 1) {   
         $num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 1);
        } else {
+       } else if ($user->membership_id == 2) { 
         $num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 2);
+       }			
+       } else {
+        $num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 4);	       
        }			
 			
 			//0 means do nothing

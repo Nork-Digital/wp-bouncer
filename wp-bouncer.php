@@ -37,7 +37,8 @@ class WP_Bouncer {
 		add_action( 'wp_login', array( $this, 'login_track' ) );
 		
 		//bounce logins
-		add_action( 'init', array( $this, 'login_flag' ) );
+		//add_action( 'init', array( $this, 'login_flag' ) );
+		add_action( 'init', array( $this, 'login_flag' ), 10, 0 );
 			
 		//add action links to reset sessions
 		add_filter( 'user_row_actions', array($this, 'user_row_actions' ), 10, 2 );
@@ -219,10 +220,8 @@ class WP_Bouncer {
 
       if ($user->membership_id == 1) {   
         $num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 1);
-       } else {
        } else if ($user->membership_id == 2) { 
         $num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 2);
-       }			
        } else {
         $num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 4);	       
        }			

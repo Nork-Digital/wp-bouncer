@@ -240,7 +240,7 @@ class WP_Bouncer
 					$current_user->ID
 				)
 			);
-
+			// NÍVEIS DE USUÁRIO E LOGINS PERMITIDOS
 			if ($user->membership_id == 1) {
 				$num_allowed = apply_filters('wp_bouncer_number_simultaneous_logins', 1);
 			} else if ($user->membership_id == 2) {

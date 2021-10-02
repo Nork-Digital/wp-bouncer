@@ -97,7 +97,7 @@ class WP_Bouncer
 		global $error;
 
 		if (isset($_REQUEST['bounced']) && '1' == $_REQUEST['bounced']) {
-			$error  = esc_html__('There was an issue with your log in. Your user account has logged in recently from a different location.', 'wp-bouncer');
+			$error  = esc_html__('Erro, limite de logins atingido! Faça o upgrade do seu plano ou entre em contato com nosso time de suporte.', 'wp-bouncer');
 		}
 	}
 
